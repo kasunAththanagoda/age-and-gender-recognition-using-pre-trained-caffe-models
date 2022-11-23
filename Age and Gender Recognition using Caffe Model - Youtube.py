@@ -6,18 +6,19 @@
 
 import cv2
 import os
-os.chdir('D:\Python37\Projects\Gender-and-Age-Detection- Youtube\Gender-and-Age-Detection\models')
+#os.chdir('D:\Python37\Projects\Gender-and-Age-Detection- Youtube\Gender-and-Age-Detection\models')
 
 
 # In[33]:
 
 
-def detectFace(net,frame,confidence_threshold=0.7):
+def detectFace(net,frame,confidence_threshold=0.7): # here confidence is the least expected acuracy of the identification
     frameOpencvDNN=frame.copy()
     print(frameOpencvDNN.shape)
-    frameHeight=frameOpencvDNN.shape[0]
+    frameHeight=frameOpencvDNN.shape[0] #these sizes are from a array
     frameWidth=frameOpencvDNN.shape[1]
     blob=cv2.dnn.blobFromImage(frameOpencvDNN,1.0,(227,227),[124.96,115.97,106.13],swapRB=True,crop=False)
+    #this is a function from cv2 dnn .it will input a image or a video and output a 4d array (blob) .which is ready to be processed
     net.setInput(blob)
     detections=net.forward()
     faceBoxes=[]
